@@ -38,3 +38,18 @@ Assuming you have installed emscripten and have its tools on path,
 2. `CPPFLAGS='-s USE_FREETYPE=1' LDFLAGS='-s USE_FREETYPE=1' emconfigure ./configure`
 3. `make EXEEXT=.html GL_LIBS= GLUT_LIBS=`
 4. The result will be located on `demo/.libs/glyphy-demo.html` (not `demo/glyphy-demo.html`)
+
+### Compilation instructions for Ubuntu
+
+Ubuntu <23.04 requires [Harfbuzz](https://github.com/harfbuzz/harfbuzz) >=6.0.0 compiled and installed. Ubuntu >=23.04 has a recent enough harfbuzz.
+
+```
+sudo apt update
+sudo apt install -y g++ libfreetype6-dev libglib2.0-dev libcairo2-dev make cmake automake autoconf libtool libharfbuzz-dev meson freeglut3-dev libglew-dev
+./autogen.sh
+make
+meson setup build
+meson compile -C build
+```
+
+Then run the demo with `./build/demo/glyphy-demo`
